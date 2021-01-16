@@ -6,14 +6,16 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      cateWasChosen: true,
+
     };
   }
 
 
   render(){
-    
-  }
+    return(
+      <p>home</p>
+  )}
 }
 
 

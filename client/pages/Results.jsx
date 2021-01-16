@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
-class SignUp extends Component {
+class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     };
   }
 
 
   render(){
     return(
-      <p>signup page</p>
+      <p>results</p>
   )}
 }
 
 
-export default SignUp;
+export default Results;
