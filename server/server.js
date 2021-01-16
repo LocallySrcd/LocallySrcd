@@ -3,7 +3,11 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-/* require routers here */
+// requiring routers here
+const apiRouter = require('./routes/api.js');
+const favsRouter = require('./routes/favs.js');
+const loginRouter = require('./routes/login.js');
+const signupRouter = require('./routes/signup.js');
 
 // parsing any JSON body we get first
 app.use(express.json());
@@ -19,6 +23,10 @@ app.use((req, res, next) => {
 });
 
 // put route handlers //
+app.use('/api', apiRouter);
+// app.use('/api/favs', favsRouter);
+// app.use('/login', loginRouter);
+// app.use('/signup', signupRouter);
 
 /*** MAIN PAGE ***/
 
@@ -26,6 +34,23 @@ app.use((req, res, next) => {
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 // for the devServer
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
+
+
+
+// main app handler
+
+
+app.get('/favorites', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+app.get('/results', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+app.get('/signup', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
