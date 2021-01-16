@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MainContainer extends Component {
+class TopCategoriesContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,8 +11,11 @@ class MainContainer extends Component {
   }
 
   render() {
-    return <h3> LOCALLY SRCD</h3>;
-  }
+    return( 
+    <div>
+
+    </div>
+  )}
 }
 
-export default MainContainer;
+export default TopCategoriesContainer;
