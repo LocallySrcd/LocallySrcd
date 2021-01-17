@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
+import ResultCard from '../components/ResultCard.jsx';
 
-class ResultsContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    };
+const ResultsContainer = ({ results, preferredLocations, closedLocations }) => {
+  let recs = [];
+
+  if (!results) {
+    recs = null
+  } else {
+    results.forEach((rec, i) =>{
+      const { id } = rec;
+
+      // check if the location is open
+      if (!closedLocations[id]){
+        let isFav;
+
+        // checking if location is the user's preferred location
+        preferredLocations[id] ? isFav = true : isFav = false;
+
+        recs.push(<ResultCard 
+          key={i}
+          info={rec}
+          isFav={isFav}
+        />)
+      }
+    })
   }
 
-
-  render(){
-    return(
-      <p>results container</p>
-    )
-  }
+  return(
+    <div className = 'resultsContainer'>
+      {recs}
+    </div>
+  )
 }
 
 
