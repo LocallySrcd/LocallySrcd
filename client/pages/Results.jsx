@@ -12,9 +12,9 @@ class Results extends Component {
 
   render(){
     return(
-      <div>
-          <p>results</p>
+      <div className='resultsPage'>
           <SearchContainer></SearchContainer>
+          <p>results</p>
       </div>
 
   )}

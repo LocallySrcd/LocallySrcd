@@ -14,7 +14,11 @@ class Home extends Component {
 
   render(){
     return(
-      <p>home</p>
+      <div>
+        <p>home</p>
+        <SearchContainer></SearchContainer>
+        
+      </div>
   )}
 }
 

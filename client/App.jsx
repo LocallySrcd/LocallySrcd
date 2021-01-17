@@ -46,6 +46,7 @@ class App extends Component {
     // update state with recieved results data
   }
 
+  
 
   componentDidMount(){
     // grab the user's location using browser's location and updates state -> client needs to give permission to access location
@@ -76,7 +77,7 @@ class App extends Component {
         <Switch>
           <Route path='/signup' component={SignUp} />
           <Route path='/favorites' component={Favorites} />
-          <Route path='/results' component={Results} />
+          <Route path='/results' render={props => (<Results {...props} />)} />
           <Route path='/' exact component={Home} />
 
         </Switch>

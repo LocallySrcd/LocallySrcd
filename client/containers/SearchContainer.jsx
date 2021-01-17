@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class SearchContainer extends Component {
   constructor(props) {
@@ -10,7 +11,12 @@ class SearchContainer extends Component {
 
 
   render(){
-    
+    return(
+      <div className ='searchContainer'>
+          <input id="searchInput" type="text" placeholder='enter keyword here'></input>
+          <Link to='/results'> <button id='searchButton' type='button'></button> </Link>
+      </div>
+    )
   }
 }
 
