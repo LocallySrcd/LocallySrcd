@@ -5,14 +5,14 @@ class TopCategoriesContainer extends Component {
     super();
     this.state = {
       categories: [
-        ['LifeStyle', 'active'],
+        ['Lifestyle', 'active'],
         ['Beauty', 'beautysvc'],
         ['Treats', 'food'],
         ['Sporty Goods', 'sportgoods'],
         ['Health', 'health'],
         ['Furry Friends', 'pets'],
         ['Dining', 'restaurants'],
-        ['HomeLife', 'homeandgarden'],
+        ['Home Life', 'homeandgarden'],
         ['Clothing', 'fashion'],
       ],
     };
@@ -27,8 +27,13 @@ class TopCategoriesContainer extends Component {
         categoryKey={category[1]}
       />
     ));
-    return <div className="TopCateBox">{buttonCategories}</div>;
-  }
+
+
+    return (
+      <div className="TopCateBox">
+        {buttonCategories}
+      </div>
+  )}
 }
 
 export default TopCategoriesContainer;

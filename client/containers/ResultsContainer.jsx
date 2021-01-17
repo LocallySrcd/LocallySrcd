@@ -28,7 +28,11 @@ const ResultsContainer = ({ results, preferredLocations, closedLocations }) => {
     );
   }
 
-  return <div className="resultsContainer">{recs}</div>;
+  return (
+    <div className="resultsContainer">
+      {recs}
+    </div>
+  );
 };
 
 export default ResultsContainer;

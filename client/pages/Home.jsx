@@ -8,7 +8,10 @@ const Home = (props) => {
   const { searchButtonHandler, catBtnHandler } = props;
 
   return (
-    <div>
+    <div className='homeContainer'>
+      <p> Practice kindness. Check in with one another. 
+        <br></br>
+        Amplify your support. Shop locally! </p>
       <TopCategoriesContainer catBtnHandler={catBtnHandler} />
       <SearchContainer searchButtonHandler={searchButtonHandler} />
       <ResultsContainer
