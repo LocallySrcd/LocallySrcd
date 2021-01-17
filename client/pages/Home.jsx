@@ -17,8 +17,6 @@ class Home extends Component {
 
     return(
       <div>
-        <p>home</p>
-        <SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
         <TopCategoriesContainer state={this.props} />
       </div>
   )}
@@ -26,3 +24,9 @@ class Home extends Component {
 
 
 export default Home;
+
+/*
+if we're using this, we need to go back to App.jsx and pass down searchButtonHandler as a property in the Route Switch
+<SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
+
+*/
