@@ -10,9 +10,10 @@ mainController.getResults = (req, res, next) => {
   const { term, category, longitude, latitude } = req.body;
   client
     .search({
-      term: 'Gym',
-      category: 'Fitness',
-      location: 'New York, NY',
+      term: term,
+      category: category,
+      latitude: latitude,
+      longitude: longitude,
     })
     .then((response) => {
       // use reduce to take response object's array of businesses and reduce it down to 10, removing unneeded key-value pairs
@@ -31,6 +32,8 @@ mainController.getResults = (req, res, next) => {
       );
       res.locals.results = reducedResults;
       // send back term, send back category
+      res.locals.category = category;
+      res.locals.term = term;
       return next();
     })
     .catch((e) => {
