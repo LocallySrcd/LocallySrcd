@@ -82,6 +82,7 @@ const ResultCard = ({ info, isFav }) => {
             <div className="stars">{displayStars}</div>
             <span id="reviews"> {review_count}</span>
           </div>
+          <button id='reportClosed' type='button'>Report Closed</button>
           <div id="favIcon">{FavIcon}</div>
         </article>
       </div>

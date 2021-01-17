@@ -6,8 +6,9 @@
   width: 650px;
   height: 210px;
   padding: 24px;
-  margin: 24px;
+  margin: 70px 24px;
   background-color: white;
+  font-family: Arial;
 }
 
 .placeCard {
@@ -27,7 +28,7 @@
     "categories categories categories"
     "address address address"
     "phone phone phone"
-    "totalrating totalrating favIcon"
+    "totalrating reportClosed favIcon"
   }
 
   #categories {
@@ -65,6 +66,14 @@
     text-align: center;
     color: grey;
     font-size: 12px;
+  }
+
+  #reportClosed {
+    grid-area: reportClosed;
+    text-align: center;
+    color: grey;
+    background-color: white;
+    border: none;
   }
 
   #favIcon {
@@ -124,6 +133,11 @@
   }
 }
 
-// #otherflex {
-//   display: flex;
-// }
+#reportClosed:hover {
+  text-decoration: underline;
+}
+
+#reportClosed:focus {
+  outline: none;
+  text-decoration: underline;
+}

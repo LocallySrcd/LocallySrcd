@@ -32,7 +32,7 @@ const ResultsContainer = ({ results, preferredLocations, closedLocations }) => {
     <div className="resultsContainer">
       {recs}
     </div>
-  )
+  );
 };
 
 export default ResultsContainer;

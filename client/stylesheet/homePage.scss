@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  //text-align: center;
+
+  p {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    color: rgb(104, 99, 99);
+    text-align: center;
+  }
 }
 
 
@@ -11,7 +19,7 @@
   width: 750px;
   height: 300px;
   flex-wrap: wrap;
-  margin: 40px;
+  margin: 10px 10px 50px;
 }
 
 .buttons {
