@@ -12,6 +12,7 @@ const bcrypt = require('bcrypt');
 // will the user provide preferred locations when creating the account? lol
 const UserController = {
   createUser(req, res, next) {
+    console.log('in UserControler.createUser');
     const { username, password, prefLocations } = req.body;
 
     // If user creates a new acc
@@ -38,7 +39,7 @@ const UserController = {
 
   // if user logs in
   getUser(req, res, next) {
-    'in getUser';
+    console.log('in getUser');
     const { username, password, prefLocations } = req.body;
 
     User.findOne(
