@@ -36,7 +36,7 @@ class App extends Component {
 
       <Router>
         <div className='appHeader'>
-          <h1>LOCALLY SRCD</h1>
+          <Link to='/'><img id='logo' src='./assets/locallysrcdlogo.png' alt='Locally SRCD Logo'></img></Link>
           <NavBar />
         </div>
 
