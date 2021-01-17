@@ -6,15 +6,21 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cateWasChosen: true,
+      //cateWasChosen: true,
 
     };
   }
 
 
   render(){
+    const { searchButtonHandler } = this.props;
+
     return(
-      <p>home</p>
+      <div>
+        <p>home</p>
+        <SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
+        
+      </div>
   )}
 }
 

@@ -1,0 +1,129 @@
+.resultCardContainer {
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 650px;
+  height: 210px;
+  padding: 24px;
+  margin: 24px;
+  background-color: white;
+}
+
+.placeCard {
+
+  article {
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: space-around;
+    display: grid;
+    padding: 2px 10px;
+    height: 150px;
+    width: 350px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    grid-template-areas:
+    "categories categories categories"
+    "address address address"
+    "phone phone phone"
+    "totalrating totalrating favIcon"
+  }
+
+  #categories {
+    grid-area: categories;
+    font-size: 14px;
+    margin-top: 5px;
+    color: grey;
+  }
+
+  #address {
+    grid-area: address;
+  }
+
+  #phone {
+    grid-area: phone;
+  }
+
+  #totalrating {
+    grid-area: totalrating;
+    //text-align: center;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 16px;
+      width: 16px;
+    }
+
+  }
+
+  #reviews {
+    grid-area: reviews;
+    text-align: center;
+    color: grey;
+    font-size: 12px;
+  }
+
+  #favIcon {
+    grid-area: favIcon;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      height: 35px;
+      width: 35px;
+    }
+  }
+}
+
+// rest img tags!
+.placePic {
+  padding: 5px;
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
+}
+
+#cardHeader {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px 3px 5px;
+  padding: 5px 5px 0px;
+  width: 400px;
+  height: 35px;
+
+  a {
+    margin: 3px;
+    width: 60%;
+    font-size: 22px;
+    text-decoration: none; 
+    color: black;
+    transition: ease 30s;
+  }
+
+  a:hover {
+    font-style: bold;
+    //text-shadow: 1px 0px rgba(0, 0, 0, 0.432);
+    text-decoration: underline;
+  }
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+
+  #innerflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// #otherflex {
+//   display: flex;
+// }

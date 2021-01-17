@@ -1,3 +1,25 @@
+
+@import 'searchCont.scss';
+@import 'resultsPage.scss';
+@import 'resultCard.scss';
+
+
 body {
-  background-color: peachpuff;
+  background-color: white;
+  
+}
+
+a {
+  text-decoration: none;
+}
+
+.appHeader {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 20px;
+  margin-right: 20px;
+
+  // put in NavBar styling here -> add right margin
+  
 }
