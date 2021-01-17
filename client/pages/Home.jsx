@@ -7,21 +7,19 @@ class Home extends Component {
     super(props);
     this.state = {
       //cateWasChosen: true,
-
     };
   }
 
-
-  render(){
+  render() {
     const { searchButtonHandler } = this.props;
 
-    return(
+    return (
       <div>
         <TopCategoriesContainer state={this.props} />
       </div>
-  )}
+    );
+  }
 }
-
 
 export default Home;
 
