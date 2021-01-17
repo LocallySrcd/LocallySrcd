@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchContainer from '../containers/SearchContainer.jsx';
 
 class Results extends Component {
   constructor(props) {
@@ -11,7 +12,11 @@ class Results extends Component {
 
   render(){
     return(
-      <p>results</p>
+      <div>
+          <p>results</p>
+          <SearchContainer></SearchContainer>
+      </div>
+
   )}
 }
 

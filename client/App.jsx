@@ -16,11 +16,30 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null,
-      // user info (username, login, favs)
-      // closed locations
+      user: null, // will reassigned as the user object sent back from server after client signs up/logins // {firstName: string, lastName: username: string}
+      //longitude: number -> will be created after component mounts
+      //latitude: number -> will be created after component mounts
+      // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
+      // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request 
     };
+
+    this.updateUserCoordinates = this.updateUserCoordinates.bind(this);
+
   }
+
+  updateUserCoordinates(latitude, longitude){
+    // updates the state with the user's current location
+    const userLat = latitude;
+    const userLong = longitude;
+
+    this.setState((prevState) => {
+      const newState = {...prevState};
+      newState.latitude = userLat;
+      newState.longitude = userLong;
+      return newState;
+    })
+  }
+
 
   searchButtonHandler(){
     // send fetch request to server
@@ -28,8 +47,22 @@ class App extends Component {
   }
 
 
+  componentDidMount(){
+    // grab the user's location using browser's location and updates state -> client needs to give permission to access location
+    const successfulLookup = (position) => {
+      const { latitude, longitude } =  position.coords;
+      this.updateUserCoordinates(latitude, longitude);
+    };
+  
+    navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
+  }
+
+  componentDidUpdate(){
+    console.log('State updated: ', this.state);
+  }
+
+
   render() {
-    console.log('HI FROM APP.JSX');
 
     // appHeader -> is fixed stagnant/constant throughout entire UX. NavBar component will change depending on App's state
     return (
