@@ -27,7 +27,12 @@ class App extends Component {
 
     this.updateUserCoordinates = this.updateUserCoordinates.bind(this);
     this.searchButtonHandler = this.searchButtonHandler.bind(this);
+    this.categoryButtonHandler = this.categoryButtonHandler.bind(this);
+  }
 
+  categoryButtonHandler(event) {
+    event.preventDefault();
+    console.log(event.target.value)
   }
 
   updateUserCoordinates(latitude, longitude){
@@ -73,6 +78,11 @@ class App extends Component {
     .catch((err) => console.log(err));
   }
 
+  searchButtonHandler() {
+    // send fetch request to server
+    // update state with recieved results data
+    // fetch()
+  }
   
 
   componentDidMount(){
@@ -105,7 +115,7 @@ class App extends Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/favorites' component={Favorites} />
           <Route path='/results' render={() => (<Results state={this.state} />)} />
-          <Route path='/' exact render={() => (<Home state={this.state} searchButtonHandler={this.searchButtonHandler} />)} />
+          <Route path='/' exact render={() => (<Home state={this.state} catBtnHandler={this.categoryButtonHandler} searchButtonHandler={this.searchButtonHandler} />)} />
 
         </Switch>
 
