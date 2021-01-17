@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchContainer from '../containers/SearchContainer.jsx';
 import ResultsContainer from '../containers/ResultsContainer.jsx';
+import TopCategoriesContainer from '../containers/TopCategoriesContainer.jsx'
 
 class Results extends Component {
   constructor(props) {
@@ -16,11 +17,14 @@ class Results extends Component {
   render(){
   
     const { results, preferredLocations, closedLocations } = this.props.state;
+    const { searchButtonHandler, catBtnHandler } = this.props;
 
     
     return(
       <div className='resultsPage'>
-          <SearchContainer></SearchContainer>
+        <TopCategoriesContainer state={this.props.state} catBtnHandler={catBtnHandler}/>
+        {/* <TopCategoriesContainer state={this.props} /> I think we should have the category buttons remain on the results page we probably just need the current category from state to keep it pressed */}
+        <SearchContainer searchButtonHandler={searchButtonHandler} />
           <ResultsContainer 
             results={results}
             preferredLocations={preferredLocations}

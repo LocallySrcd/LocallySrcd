@@ -29,7 +29,7 @@ class TopCategoriesContainer extends Component {
       categoryKey={category[1]} 
     />)
     return( 
-      <div>
+      <div className="TopCateBox">
         {buttonCategories}
       </div>
   )}
