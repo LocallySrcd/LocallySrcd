@@ -19,7 +19,7 @@ class Home extends Component {
       <div>
         <p>home</p>
         <SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
-        
+        <TopCategoriesContainer state={this.props} />
       </div>
   )}
 }
