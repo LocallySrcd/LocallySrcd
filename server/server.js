@@ -30,6 +30,10 @@ app.use('/login', loginRouter);
 
 /*** MAIN PAGE ***/
 
+// app.post('/login', userController.getUser, (req, res) => {
+//   res.status(200).json(res.locals);
+// });
+
 // directs the request to the assets folder for images
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 // for the devServer
