@@ -6,13 +6,13 @@ const SearchContainer = ({ searchButtonHandler }) => {
     return(
       <div className ='searchContainer'>
           <input id="searchInput" type="text" placeholder='enter keyword here'></input>
-          <Link to='/results'> <button id='searchButton' type='button' onClick={() => {
+          <button id='searchButton' type='button' onClick={() => {
             let userKeywordInput = document.getElementById('searchInput').value;
             if (!userKeywordInput) {userKeywordInput = ''}
 
             searchButtonHandler(userKeywordInput);
           }}
-          ></button> </Link>
+          ></button>
       </div>
   )
 }

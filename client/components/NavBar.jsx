@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
-const NavBar = (props) => {
+const NavBar = () => {
+
   return (
-    <div>
-    <h1 className="navBar">Sign Up / Login
+    <div className="login">
+          <Link to='/login'><img id='login' src="./assets/user-login-icon-14.png" ></img></Link>
+          <Link to='/signup'><img id='signup' src="./assets/signup.png" ></img></Link>
       {/* <a className="login" onClick={this.togglePopup} >
               Login / Create Account
             {this.state.showPopup ?  <Popup closePopup={this.togglePopup} />  
-      : null  
-      }  </a> */}
-      </h1>
+  : null  */}
     </div>  
   )};
   

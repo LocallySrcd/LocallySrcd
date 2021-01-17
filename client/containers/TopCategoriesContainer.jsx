@@ -4,9 +4,6 @@ class TopCategoriesContainer extends Component {
   constructor() {
     super();
     this.state = {
-      //userLocation,
-      //preferredLocations, // an object? array? holding ids
-      //closedLocations, // an object? array? holding ids
       categories: [
                     ['LifeStyle', 'active'],
                     ['Beauty', 'beautysvc'], 
@@ -25,11 +22,11 @@ class TopCategoriesContainer extends Component {
     const buttonCategories = this.state.categories.map((category, idx) => <TopCategoriesButton 
       key={`cat-${idx}`}
       categoryStr={category[0]}
-      catBtnHandler={this.props.state.catBtnHandler} 
+      catBtnHandler={this.props.catBtnHandler} 
       categoryKey={category[1]} 
     />)
     return( 
-      <div>
+      <div className="TopCateBox">
         {buttonCategories}
       </div>
   )}
