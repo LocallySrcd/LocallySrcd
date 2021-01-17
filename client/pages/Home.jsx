@@ -8,7 +8,7 @@ const Home = (props) => {
   const { searchButtonHandler, catBtnHandler } = props;
 
   return (
-    <div>
+    <div className='homeContainer'>
       <TopCategoriesContainer catBtnHandler={catBtnHandler} />
       <SearchContainer searchButtonHandler={searchButtonHandler} />
       <ResultsContainer

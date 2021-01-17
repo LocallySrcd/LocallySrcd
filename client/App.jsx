@@ -119,6 +119,8 @@ class App extends Component {
               id="logo"
               src="./assets/locallysrcdlogo.png"
               alt="Locally SRCD Logo"
+              height='150px'
+              width='150px'
             ></img>
           </Link>
           <NavBar />
