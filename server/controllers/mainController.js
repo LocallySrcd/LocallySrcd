@@ -7,6 +7,7 @@ const client = yelp.client(
 const mainController = {};
 
 mainController.getResults = (req, res, next) => {
+  const { term, categories, longitude, latitude } = req.body;
   client
     .search({
       term: 'Gym',

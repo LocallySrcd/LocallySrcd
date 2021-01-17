@@ -1,4 +1,5 @@
 const User = require('../models/models.js');
+const bcrypt = require('bcrypt');
 
 /*
   const userSchema = new Schema({
@@ -37,12 +38,14 @@ const UserController = {
 
   // if user logs in
   getUser(req, res, next) {
-    const { username, password, prefLocations } = req.params.user;
+    'in getUser';
+    const { username, password, prefLocations } = req.body;
+
     User.findOne(
       {
         username: username,
-        password: password,
-        prefLocations: prefLocations,
+        // password: password,
+        // prefLocations: prefLocations,
       },
       (err, foundUser) => {
         if (err)
@@ -50,8 +53,18 @@ const UserController = {
             log: 'Error in user.find middleware',
             message: err,
           });
-        res.locals.username = foundUser.username;
-        res.locals.preferredLocations = foundUser.preferredLocations;
+
+        bcrypt.compare(password, foundUser.password, (err, result) => {
+          if (err) {
+            return 'error';
+          }
+          if (result) {
+            res.locals.username = foundUser.username;
+            res.locals.prefLocations = foundUser.prefLocations;
+            return next();
+          }
+          return res.status(418).send('Permission denied');
+        });
       }
     );
   },
