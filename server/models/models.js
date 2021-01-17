@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const MongoURI =
-  'mongodb+srv://shahDBA:shahDBA123@clusterfudge.lrsuc.mongodb.net/starwars?retryWrites=true&w=majority';
+  'mongodb+srv://shahDBA:shahDBA123@clusterfudge.lrsuc.mongodb.net/locally?retryWrites=true&w=majority';
 
 mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
@@ -14,4 +14,4 @@ const userSchema = new Schema({
   prefLocations: { type: Array, required: true },
 });
 
-module.exports = mongoose.model('Username', userSchema);
+module.exports = mongoose.model('users', userSchema);
