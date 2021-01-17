@@ -8,6 +8,7 @@ const User = require('../models/models.js');
   });
 */
 
+// will the user provide preferred locations when creating the account? lol
 const UserController = {
   createUser(req, res, next) {
     const { username, password, prefLocations } = req.body;
@@ -25,7 +26,11 @@ const UserController = {
             log: 'Error user already exists',
             message: err,
           });
-        res.locals.user = newUser;
+        const { username, prefLocations } = newUser;
+        res.locals.username = username;
+        res.locals.prefLocations = prefLocations;
+        console.log('res.locals.user -->', res.locals);
+        return next();
       }
     );
   },
@@ -46,7 +51,7 @@ const UserController = {
             message: err,
           });
         res.locals.username = foundUser.username;
-        res.locals.preferredLocations = founderUser.preferredLocations;
+        res.locals.preferredLocations = foundUser.preferredLocations;
       }
     );
   },

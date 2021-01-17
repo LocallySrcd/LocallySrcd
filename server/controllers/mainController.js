@@ -14,9 +14,22 @@ mainController.getResults = (req, res, next) => {
       location: 'New York, NY',
     })
     .then((response) => {
-      // console.log(response);
-      console.log(response.jsonBody.businesses[0]);
-      let filtered = response.jsonBody.business.filter((obj, idx) => {});
+      // use reduce to take response object's array of businesses and reduce it down to 10, removing unneeded key-value pairs
+      const reducedResults = response.jsonBody.businesses.reduce(
+        (acc, cv, idx) => {
+          if (idx < 10) {
+            delete cv.alias;
+            delete cv.is_closed;
+            delete cv.transactions;
+            delete cv.price;
+            acc.push(cv);
+          }
+          return acc;
+        },
+        []
+      );
+      res.locals.results = reducedResults;
+      return next();
     })
     .catch((e) => {
       console.log(e);

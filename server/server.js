@@ -24,9 +24,9 @@ app.use((req, res, next) => {
 
 // put route handlers //
 app.use('/api', apiRouter);
+app.use('/createUser', signupRouter);
 // app.use('/api/favs', favsRouter);
 // app.use('/login', loginRouter);
-// app.use('/signup', signupRouter);
 
 /*** MAIN PAGE ***/
 
@@ -35,10 +35,7 @@ app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 // for the devServer
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-
-
 // main app handler
-
 
 app.get('/favorites', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
@@ -54,18 +51,6 @@ app.get('/signup', (req, res) => {
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-});
-
-app.get('/favorites', (req, res) => {
-  express.static(path.join(__dirname, '../client/index.html'));
-});
-
-app.get('/results', (req, res) => {
-  express.static(path.join(__dirname, '../client/index.html'));
-});
-
-app.get('/signup', (req, res) => {
-  express.static(path.join(__dirname, '../client/index.html'));
 });
 
 // catch all
