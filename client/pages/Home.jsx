@@ -33,18 +33,26 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //cateWasChosen: true,
     };
   }
 
-
-  render(){
+  render() {
     const { searchButtonHandler } = this.props;
 
-    return(
+    return (
       <div>
         <TopCategoriesContainer state={this.props} />
         <SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
       </div>
-  )}
+    );
+  }
 }
+
+export default Home;
+
+/*
+if we're using this, we need to go back to App.jsx and pass down searchButtonHandler as a property in the Route Switch
+<SearchContainer searchButtonHandler={searchButtonHandler} ></SearchContainer>
+
 */

@@ -5,31 +5,30 @@ class TopCategoriesContainer extends Component {
     super();
     this.state = {
       categories: [
-                    ['LifeStyle', 'active'],
-                    ['Beauty', 'beautysvc'], 
-                    ['Treats', 'food'], 
-                    ['Sporty Goods', 'sportgoods'], 
-                    ['Health', 'health'], 
-                    ['Furry Friends', 'pets'], 
-                    ['Dining', 'restaurants'], 
-                    ['HomeLife', 'homeandgarden'], 
-                    ['Clothing', 'fashion']
-                   ]
+        ['LifeStyle', 'active'],
+        ['Beauty', 'beautysvc'],
+        ['Treats', 'food'],
+        ['Sporty Goods', 'sportgoods'],
+        ['Health', 'health'],
+        ['Furry Friends', 'pets'],
+        ['Dining', 'restaurants'],
+        ['HomeLife', 'homeandgarden'],
+        ['Clothing', 'fashion'],
+      ],
     };
   }
   render() {
     // create new array by mapping thru array of categories to create a category button for each one with category button
-    const buttonCategories = this.state.categories.map((category, idx) => <TopCategoriesButton 
-      key={`cat-${idx}`}
-      categoryStr={category[0]}
-      catBtnHandler={this.props.catBtnHandler} 
-      categoryKey={category[1]} 
-    />)
-    return( 
-      <div className="TopCateBox">
-        {buttonCategories}
-      </div>
-  )}
+    const buttonCategories = this.state.categories.map((category, idx) => (
+      <TopCategoriesButton
+        key={`cat-${idx}`}
+        categoryStr={category[0]}
+        catBtnHandler={this.props.catBtnHandler}
+        categoryKey={category[1]}
+      />
+    ));
+    return <div className="TopCateBox">{buttonCategories}</div>;
+  }
 }
 
 export default TopCategoriesContainer;
