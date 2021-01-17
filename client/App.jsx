@@ -21,6 +21,7 @@ class App extends Component {
       //latitude: number -> will be created after component mounts
       // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
       // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request 
+      // results: an array of objects // will be created when server sends back retrieved list of results
     };
 
     this.updateUserCoordinates = this.updateUserCoordinates.bind(this);
@@ -77,7 +78,7 @@ class App extends Component {
         <Switch>
           <Route path='/signup' component={SignUp} />
           <Route path='/favorites' component={Favorites} />
-          <Route path='/results' render={props => (<Results {...props} />)} />
+          <Route path='/results' render={() => (<Results state={this.state} />)} />
           <Route path='/' exact component={Home} />
 
         </Switch>
