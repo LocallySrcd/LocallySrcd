@@ -37,7 +37,7 @@ const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler, signU
       <div className="signupform">Please sign up
         <form>
           <div>
-          <input className="signupinput" id ="userName" type="submit"
+          <input className="signupinput" id ="userName" type="text"
           placeholder="username"
           />
           </div>
