@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 
 // put route handlers //
 app.use('/api', apiRouter);
-app.use('/createUser', signupRouter);
+app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 // app.use('/api/favs', favsRouter);
 
@@ -52,17 +52,17 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 // main app handler
 
-app.get('/favorites', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-});
+// app.get('/favorites', (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
-app.get('/results', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-});
+// app.get('/results', (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
-app.get('/signup', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-});
+// app.get('/signup', (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
