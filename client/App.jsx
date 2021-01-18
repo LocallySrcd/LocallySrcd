@@ -15,7 +15,7 @@ class App extends Component {
       preferredLocations: null, // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
       closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       fetchTerm: '',
-      seen: true,
+      signUpPop: false,
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
       // results: an array of objects // will be created when server sends back retrieved list of results - this should be update whenever keyword or category is submitted by user
@@ -26,6 +26,9 @@ class App extends Component {
     this.categoryButtonHandler = this.categoryButtonHandler.bind(this);
     this.logInSubmitHandler = this.logInSubmitHandler.bind(this);
     this.logoutHandler = this.logoutHandler.bind(this);
+    this.signUpButtonHandler = this.signUpButtonHandler.bind(this);
+    this.createUser = this.createUser.bind(this);
+
 
   }
 
@@ -98,7 +101,6 @@ class App extends Component {
   }
 
   logInSubmitHandler(username, password) {
-    console.log('user logged in', {username}, {password})
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -111,7 +113,6 @@ class App extends Component {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log('data from post request', data)
         this.setState((prevState) => {
           const newState = { ...prevState };
           newState.user = data.username
@@ -123,7 +124,7 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
   
-  logoutHandler() {
+  logoutHandler() { 
     this.setState((prevState) => {
       const newState = { ...prevState }
       newState.user = null;
@@ -131,6 +132,39 @@ class App extends Component {
       newState.isLoggedIn = false;
       return newState;
     });
+  }
+ 
+  signUpButtonHandler() {
+    this.setState((prevState) => {
+      const newState = { ...prevState };
+      newState.signUpPop = true;
+      return newState;
+    });
+  }
+  
+  createUser(username, password) {
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+    .then((data) => data.json())
+    .then((data) => {
+      this.setState((prevState) => {
+        const newState = { ...prevState };
+        newState.user = data.username
+        newState.isLoggedIn = true;
+        newState.signUpPop = false;
+        newState.preferredLocations = data.prefLocations;
+        return newState;
+      });
+    })
+    .catch((err) => console.log(err));
   }
 
   componentDidMount() {
@@ -163,9 +197,12 @@ class App extends Component {
           </Link>
           <NavBar 
             userName={this.state.user} 
+            signUpPop={this.state.signUpPop}
             userStatus={this.state.isLoggedIn} 
             logInSubmitHandler={this.logInSubmitHandler} 
             logoutHandler={this.logoutHandler} 
+            signUpButtonHandler={this.signUpButtonHandler}
+            createUser={this.createUser}
             />
         </div>
 

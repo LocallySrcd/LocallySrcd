@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler, seen} ) => {
+const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler, signUpPop, signUpButtonHandler, createUser} ) => {
       // if user is logged in, we should render a new nav bar welcoming back the user.  logInSubmitHandler={logInSubmitHandler} 
-      console.log(seen)
-      seen = false;
-  if (!userStatus) {
+      console.log('signup?', signUpPop)
+   if (!userStatus && !signUpPop) {
     return (
       <div className="login">
         <form >
@@ -27,20 +26,49 @@ const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler, seen}
           } } >
             Log In
         </button>
-        <Link to='/signup'>
-        <button id="signup">Sign Up</button>
-        </Link>
+        <button id="signup" type="button" onClick={() => signUpButtonHandler()}>Sign Up</button>
         </form>
             {/* {seen ? <SignUp toggle={this.togglePop} /> : null} */}
-            {seen ? alert('sign up') : null}
+            {/* {!signUpPop ? <SignUp /> : null} */}
       </div>  
+    )
+  } else if (signUpPop) {
+    return (
+      <div className="signupform">Please sign up
+        <form>
+          <div>
+          <input className="signupinput" id ="userName" type="submit"
+          placeholder="username"
+          />
+          </div>
+          <div>
+          <input className="signupinput" id="passWord" type="password"
+            placeholder="password" 
+          /> 
+          </div>
+          </form>
+          {/* // login event handler */}
+          <div>
+          <button id="signupformbtn" type="button" onClick={() => {
+            const username = document.getElementById('userName').value;
+            const password = document.getElementById('passWord').value; 
+            // if (!password || !username) {
+            //   // lets render something on the page instead of an alert
+            //   alert('Please enter username and password!')
+            // } else {
+              createUser(username, password);
+          } }>Sign Up</button>
+          </div>
+      </div>
     )
   } else {
     return (
       <div className="loggedin">
         Welcome back, {userName}
-        <button id="logbutton" type="button" onClick={() => logoutHandler()}>Log Out</button>
+        <button id="logbutton" type="button" onClick={() => logoutHandler()
+        }>Log Out</button>
       </div>
+       
     )
   }
 };
