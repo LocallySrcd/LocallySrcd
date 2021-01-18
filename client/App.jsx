@@ -15,6 +15,7 @@ class App extends Component {
       preferredLocations: null, // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
       closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       fetchTerm: '',
+      seen: true,
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
       // results: an array of objects // will be created when server sends back retrieved list of results - this should be update whenever keyword or category is submitted by user

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler} ) => {
+const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler, seen} ) => {
       // if user is logged in, we should render a new nav bar welcoming back the user.  logInSubmitHandler={logInSubmitHandler} 
-     
+      console.log(seen)
+      seen = false;
   if (!userStatus) {
     return (
       <div className="login">
@@ -26,8 +27,12 @@ const NavBar = ( {logInSubmitHandler, userStatus, userName, logoutHandler} ) => 
           } } >
             Log In
         </button>
+        <Link to='/signup'>
+        <button id="signup">Sign Up</button>
+        </Link>
         </form>
-            {/* <Link to='/signup'><img id='signup' src="./assets/signup.png" ></img></Link> */}
+            {/* {seen ? <SignUp toggle={this.togglePop} /> : null} */}
+            {seen ? alert('sign up') : null}
       </div>  
     )
   } else {

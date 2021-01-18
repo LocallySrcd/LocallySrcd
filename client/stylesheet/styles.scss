@@ -3,6 +3,8 @@
 @import 'resultCard.scss';
 
 $main-grey:  rgb(104, 99, 99);
+$main-red: #EC4C4C;
+$main-green: #419A1C;
 
 /* latin */
 @font-face {
@@ -91,6 +93,25 @@ a {
     box-shadow: 1px 1px 5px #bbbbbb;
   }
   
+  #signup {
+    font-family: 'Fredoka One';
+    color: lighten($main-green, 10%);
+    background-color: lighten($main-red, 30%);
+    height: 3em;
+    width: 7em;
+    border-radius: 24px;
+  }
+  
+  #signup:focus{
+    outline: none;
+  }
+
+  #signup:hover {
+    background-color: lighten($main-red, 20%);
+    color: white;
+    cursor: pointer;
+  }
+
 }
 // pop up styling
 
