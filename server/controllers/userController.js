@@ -1,5 +1,6 @@
-const User = require('../models/models.js');
+// const User = require('../models/models.js');
 const bcrypt = require('bcrypt');
+const User = require('../models/userModel');
 
 /*
   const userSchema = new Schema({
@@ -10,9 +11,9 @@ const bcrypt = require('bcrypt');
 */
 
 // will the user provide preferred locations when creating the account? lol
-const UserController = {
+const userController = {
   createUser(req, res, next) {
-    console.log('in UserControler.createUser');
+    console.log('in UserControler.createUser', req.body);
     const { username, password, prefLocations } = req.body;
 
     // If user creates a new acc
@@ -39,7 +40,7 @@ const UserController = {
 
   // if user logs in
   getUser(req, res, next) {
-    console.log('in getUser');
+    console.log('in getUser', req.body);
     // we wont' be sending preflocations when someone logs in. you need to send that back
     const { username, password } = req.body;
 
@@ -94,4 +95,4 @@ const UserController = {
   // delete
 };
 
-module.exports = UserController;
+module.exports = userController;

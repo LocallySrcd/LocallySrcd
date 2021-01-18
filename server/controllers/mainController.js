@@ -3,7 +3,7 @@ const yelp = require('yelp-fusion');
 const client = yelp.client(
   'C875dNRjWAzLaQgmC7nd_wO97JFWpg6PuDdI9mfVsru_cOTvyoouijdnEAQwW2rnVUJ5lELwswChXgQaOJpSNpLK4tK6Jr_Gi1xRtp3dWA2UZT7B7xYP5zDBmEYDYHYx'
 );
-const models = require('../models/models.js');
+const ClosedStores = require('../models/closedStoreModel.js');
 
 const mainController = {};
 // sup Anson and Daniel. Check this out 😮‍💨 lol. fart emoji haha 💩 lol
@@ -53,7 +53,7 @@ mainController.reportClosed = (req, res, next) => {
 
   console.log(storeId);
 
-  models.ClosedStores.create(
+  ClosedStores.create(
     {
       storeId: storeId,
     },
