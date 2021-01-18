@@ -15,11 +15,13 @@ const SearchContainer = ({ searchButtonHandler }) => {
         type="button"
         onClick={() => {
           let userKeywordInput = document.getElementById('searchInput').value;
+    
           if (!userKeywordInput) {
             userKeywordInput = '';
           }
-
+          
           searchButtonHandler(userKeywordInput);
+          
         }}
       ></button>
     </div>

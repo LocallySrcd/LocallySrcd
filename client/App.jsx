@@ -11,19 +11,20 @@ class App extends Component {
     super();
     this.state = {
       user: null, // will reassigned as the user object sent back from server after client signs up/logins // {firstName: string, lastName: username: string}
-      closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
+      isLoggedIn: false,
       preferredLocations: null, // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
+      closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       fetchTerm: '',
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
-      // this is state for popUp
-      // results: an array of objects // will be created when server sends back retrieved list of results - this should be update whenever keyword or category is submitted by user. do we need to keep category and keyword in state so they both can be sent with each fetch request?
+      // results: an array of objects // will be created when server sends back retrieved list of results - this should be update whenever keyword or category is submitted by user
     };
 
     this.updateUserCoordinates = this.updateUserCoordinates.bind(this);
     this.searchButtonHandler = this.searchButtonHandler.bind(this);
     this.categoryButtonHandler = this.categoryButtonHandler.bind(this);
     this.logInSubmitHandler = this.logInSubmitHandler.bind(this);
+    this.logoutHandler = this.logoutHandler.bind(this);
 
   }
 
@@ -91,6 +92,8 @@ class App extends Component {
         });
       })
       .catch((err) => console.log(err));
+      const search = document.getElementById('searchInput');
+      search.value = '';
   }
 
   logInSubmitHandler(username, password) {
@@ -110,14 +113,24 @@ class App extends Component {
         console.log('data from post request', data)
         this.setState((prevState) => {
           const newState = { ...prevState };
-          // newState.fetchTerm = data.term;
           newState.user = data.username
+          newState.isLoggedIn = true;
+          newState.preferredLocations = data.prefLocations;
           return newState;
         });
       })
       .catch((err) => console.log(err));
   }
   
+  logoutHandler() {
+    this.setState((prevState) => {
+      const newState = { ...prevState }
+      newState.user = null;
+      newState.preferredLocations = null;
+      newState.isLoggedIn = false;
+      return newState;
+    });
+  }
 
   componentDidMount() {
     // grab the user's location using browser's location and updates state -> client needs to give permission to access location
@@ -138,7 +151,7 @@ class App extends Component {
     return (
       <Router>
         <div className="appHeader">
-          <Link to="/">
+          <Link to="/"> 
             <img
               id="logo"
               src="./assets/locallysrcdlogo.png"
@@ -147,7 +160,12 @@ class App extends Component {
               width='150px'
             ></img>
           </Link>
-          <NavBar state={this.state} logInSubmitHandler={this.logInSubmitHandler} />
+          <NavBar 
+            userName={this.state.user} 
+            userStatus={this.state.isLoggedIn} 
+            logInSubmitHandler={this.logInSubmitHandler} 
+            logoutHandler={this.logoutHandler} 
+            />
         </div>
 
         <Switch>
@@ -169,6 +187,17 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
 
 /*      original React Router Approach      
 <Router>
