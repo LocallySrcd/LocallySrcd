@@ -18,7 +18,7 @@ class TopCategoriesContainer extends Component {
     };
   }
   render() {
-    // create new array by mapping thru array of categories to create a category button for each one with category button
+    // map thru array of categories to create a category button for each one with category button
     const buttonCategories = this.state.categories.map((category, idx) => (
       <TopCategoriesButton
         key={`cat-${idx}`}

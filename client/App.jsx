@@ -16,6 +16,7 @@ class App extends Component {
       closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       fetchTerm: '',
       signUpPop: false,
+      closedStoreId: null,
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
       // results: an array of objects // will be created when server sends back retrieved list of results - this should be update whenever keyword or category is submitted by user
@@ -28,7 +29,7 @@ class App extends Component {
     this.logoutHandler = this.logoutHandler.bind(this);
     this.signUpButtonHandler = this.signUpButtonHandler.bind(this);
     this.createUser = this.createUser.bind(this);
-
+    this.reportClosed = this.reportClosed.bind(this);
 
   }
 
@@ -45,6 +46,7 @@ class App extends Component {
     });
   }
 
+  // event handler for when a category button is pressed
   categoryButtonHandler(event) {
     event.preventDefault();
     const term = event.target.value;
@@ -100,6 +102,7 @@ class App extends Component {
       search.value = '';
   }
 
+  // event handler for when user hits log in button
   logInSubmitHandler(username, password) {
     fetch('/login', {
       method: 'POST',
@@ -124,6 +127,7 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
   
+  // event handler when log out button is clicked
   logoutHandler() { 
     this.setState((prevState) => {
       const newState = { ...prevState }
@@ -142,6 +146,7 @@ class App extends Component {
     });
   }
   
+  // event handler to when user clicks sign up button
   createUser(username, password) {
     fetch('/signup', {
       method: 'POST',
@@ -165,6 +170,34 @@ class App extends Component {
       });
     })
     .catch((err) => console.log(err));
+  }
+
+  // event handler for user to report location closed
+  reportClosed(event) {
+    event.preventDefault();
+    const closed = event.target.value;
+    fetch('/api/report', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+        storeId: closed,
+        term: this.state.term,
+      }),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log('data back from category ', data)
+        this.setState((prevState) => {
+          const newState = { ...prevState };
+          newState.closedStoreId = data.closedStoreId;
+          return newState;
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   componentDidMount() {
@@ -215,6 +248,7 @@ class App extends Component {
                 state={this.state}
                 catBtnHandler={this.categoryButtonHandler}
                 searchButtonHandler={this.searchButtonHandler}
+                reportClosed={this.reportClosed}
               />
             )}
           />

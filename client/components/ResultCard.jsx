@@ -14,7 +14,7 @@ const fullStars = (rating) => {
   return total;
 };
 
-const ResultCard = ({ info, isFav }) => {
+const ResultCard = ({ info, isFav, reportClosed, closedStoreId }) => {
   console.log('result card: ', info);
   console.log('I AM A FAV: ', isFav);
 
@@ -28,8 +28,8 @@ const ResultCard = ({ info, isFav }) => {
     categories,
     location,
     distance,
+    id,
   } = info;
-
   // concatenating the address to display
   let restAddress = location.display_address.join(', ');
 
@@ -57,37 +57,71 @@ const ResultCard = ({ info, isFav }) => {
   } else {
     FavIcon = <img src="../assets/emptyheart.png"></img>;
   }
-
-  return (
-    <div className="resultCardContainer">
-      <div>
-        <img className="placePic" src={image_url}></img>
-      </div>
-      <div className="placeCard">
-        <div id="cardHeader">
-          <a href={url} target="_blank">
-            {' '}
-            {name}
-          </a>
-          <div id="innerflex">
-            <img src="../assets/thickpin.png"></img>
-            <span>{distFromUser} miles</span>
-          </div>
+  // check if the current store id is equal to the closed store id in state
+  if (id !== closedStoreId) {
+    return (
+      <div className="resultCardContainer">
+        <div>
+          <img className="placePic" src={image_url}></img>
         </div>
-        <article>
-          <span id="categories">{displayCategories}</span>
-          <span id="address">{restAddress}</span>
-          <span id="phone">{display_phone}</span>
-          <div id="totalrating">
-            <div className="stars">{displayStars}</div>
-            <span id="reviews"> {review_count}</span>
+        <div className="placeCard">
+          <div id="cardHeader">
+            <a href={url} target="_blank">
+              {' '}
+              {name}
+            </a>
+            <div id="innerflex">
+              <img src="../assets/thickpin.png"></img>
+              <span>{distFromUser} miles</span>
+            </div>
           </div>
-          <button id='reportClosed' type='button'>Report Closed</button>
-          <div id="favIcon">{FavIcon}</div>
-        </article>
+          <article>
+            <span id="categories">{displayCategories}</span>
+            <span id="address">{restAddress}</span>
+            <span id="phone">{display_phone}</span>
+            <div id="totalrating">
+              <div className="stars">{displayStars}</div>
+              <span id="reviews"> {review_count}</span>
+            </div>
+            <button id='reportClosed' value={id} type='button' onClick={(event) => reportClosed(event, reportClosed)}>Report Closed</button>
+            <div id="favIcon">{FavIcon}</div>
+          </article>
+        </div>
       </div>
-    </div>
-  );
+    )
+    // if the current result card is closed, we return below
+  } else {
+    return (
+      <div className="resultCardContainer">
+        <div>
+          <img className="placePic" src={image_url}></img>
+        </div>
+        <div className="placeCard">
+          <div id="cardHeader">
+            <a href={url} target="_blank">
+              {' '}
+              {name}
+            </a>
+            <div id="innerflex">
+              <img src="../assets/thickpin.png"></img>
+              <span>{distFromUser} miles</span>
+            </div>
+          </div>
+          <article>
+            <span id="categories">{displayCategories}</span>
+            <span id="address">{restAddress}</span>
+            <span id="phone">{display_phone}</span>
+            <div id="totalrating">
+              <div className="stars">{displayStars}</div>
+              <span id="reviews"> {review_count}</span>
+            </div>
+           {/* we should consider addidng a another event listener to toggle back to open if status changes */}
+             <button id="isclosed">CLOSED</button>
+            <div id="favIcon">{FavIcon}</div>
+          </article>
+        </div>
+      </div>
+    )}
 };
 
 export default ResultCard;
