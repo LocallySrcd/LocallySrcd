@@ -23,6 +23,8 @@ class App extends Component {
     this.updateUserCoordinates = this.updateUserCoordinates.bind(this);
     this.searchButtonHandler = this.searchButtonHandler.bind(this);
     this.categoryButtonHandler = this.categoryButtonHandler.bind(this);
+    this.logInSubmitHandler = this.logInSubmitHandler.bind(this);
+
   }
 
   updateUserCoordinates(latitude, longitude) {
@@ -54,6 +56,7 @@ class App extends Component {
     })
       .then((data) => data.json())
       .then((data) => {
+        console.log('data back from category ', data)
         this.setState((prevState) => {
           const newState = { ...prevState };
           newState.results = data.results;
@@ -90,6 +93,32 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+  logInSubmitHandler(username, password) {
+    console.log('user logged in', {username}, {password})
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log('data from post request', data)
+        this.setState((prevState) => {
+          const newState = { ...prevState };
+          // newState.fetchTerm = data.term;
+          newState.user = data.username
+          return newState;
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+  
+
   componentDidMount() {
     // grab the user's location using browser's location and updates state -> client needs to give permission to access location
     const successfulLookup = (position) => {
@@ -118,7 +147,7 @@ class App extends Component {
               width='150px'
             ></img>
           </Link>
-          <NavBar />
+          <NavBar state={this.state} logInSubmitHandler={this.logInSubmitHandler} />
         </div>
 
         <Switch>
