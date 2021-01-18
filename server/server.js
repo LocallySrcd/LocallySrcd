@@ -3,11 +3,22 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+// requiring mongoose
+const mongoose = require('mongoose');
+
 // requiring routers here
 const apiRouter = require('./routes/api.js');
 const signupRouter = require('./routes/signup.js');
 const favsRouter = require('./routes/favs.js');
 const loginRouter = require('./routes/login.js');
+
+const MongoURI =
+  'mongodb+srv://shahDBA:shahDBA123@clusterfudge.lrsuc.mongodb.net/locally?retryWrites=true&w=majority';
+
+mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', () => {
+  console.log('connected to our DB!');
+});
 
 // parsing any JSON body we get first
 app.use(express.json());
