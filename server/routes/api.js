@@ -2,24 +2,24 @@ const express = require('express');
 const mainController = require('../controllers/mainController.js');
 const router = express.Router();
 
+// HEY ITERATION GROUP, WE HID FIVE PANDAS 🐼 SOMEWHERE IN THIS CODEBASE
+// Find all 5 to claim a prize 😜😜😜😜   ^ this one DOES NOT count as ONE!
+
 router.post('/report', mainController.reportClosed, (req, res) => {
   res.status(200).send({ closedStoreId: res.locals.closedStoreId });
 });
 
-// TO DO - send back closed locations on res.locals too, hit middleware
-// TO DO - put piece of middleware before getResults to get the list of closedStores
 router.post(
   '/',
   mainController.getClosedStores,
   mainController.getResults,
   (req, res) => {
     console.log('back in api.js'),
-      //console.log('res.locals.results --->', res.locals.results);
       res.status(200).send({
         results: res.locals.results,
         term: res.locals.term,
         closedStoreList: res.locals.closedStoresList,
-      }); // send back term, send back category   // send back closed locations as well - object with keys of business IDs
+      });
   }
 );
 

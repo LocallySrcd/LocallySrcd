@@ -1,22 +1,11 @@
-// const User = require('../models/models.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // 🧟‍♂️ 🧟‍♀️
 const User = require('../models/userModel');
 
-/*
-  const userSchema = new Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  prefLocations: { type: Object, required: true }
-  });
-*/
-
-// will the user provide preferred locations when creating the account? lol
+// create the user
 const userController = {
   createUser(req, res, next) {
-    console.log('in UserControler.createUser', req.body);
     const { username, password, prefLocations } = req.body;
 
-    // If user creates a new acc
     User.create(
       {
         username: username,
@@ -38,17 +27,14 @@ const userController = {
     );
   },
 
-  // if user logs in
+  // authenticate user by checking if they are in the database
   getUser(req, res, next) {
     console.log('in getUser', req.body);
-    // we wont' be sending preflocations when someone logs in. you need to send that back
     const { username, password } = req.body;
 
     User.findOne(
       {
         username: username,
-        // password: password,
-        // prefLocations: prefLocations,
       },
       (err, foundUser) => {
         if (err)
@@ -72,9 +58,9 @@ const userController = {
     );
   },
 
-  // if user wants to update pref location
+  // execute if user wants to update their preferred locations in the database
   updateUser(req, res, next) {
-    const { username, password, prefLocations } = req.params.user;
+    const { username, password, prefLocations } = req.body;
     User.findOneAndUpdate(
       {
         username: username,
@@ -86,13 +72,12 @@ const userController = {
       },
       { upsert: true, new: true },
       (err, userObj) => {
+        if (err) return err;
         res.locals.updatedUser = userObj;
         return next();
       }
     );
   },
-
-  // delete
 };
 
 module.exports = userController;
