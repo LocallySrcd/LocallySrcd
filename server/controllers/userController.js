@@ -1,5 +1,6 @@
-const User = require('../models/models.js');
+// const User = require('../models/models.js');
 const bcrypt = require('bcrypt');
+const models = require('../models/models.js');
 
 /*
   const userSchema = new Schema({
@@ -12,11 +13,11 @@ const bcrypt = require('bcrypt');
 // will the user provide preferred locations when creating the account? lol
 const UserController = {
   createUser(req, res, next) {
-    console.log('in UserControler.createUser');
+    console.log('in UserControler.createUser', req.body);
     const { username, password, prefLocations } = req.body;
 
     // If user creates a new acc
-    User.create(
+    models.User.create(
       {
         username: username,
         password: password,
@@ -39,11 +40,11 @@ const UserController = {
 
   // if user logs in
   getUser(req, res, next) {
-    console.log('in getUser');
+    console.log('in getUser', req.body);
     // we wont' be sending preflocations when someone logs in. you need to send that back
     const { username, password } = req.body;
 
-    User.findOne(
+    models.User.findOne(
       {
         username: username,
         // password: password,
