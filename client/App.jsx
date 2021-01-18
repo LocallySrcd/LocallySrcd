@@ -14,6 +14,7 @@ class App extends Component {
       closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       preferredLocations: null, // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
       fetchTerm: '',
+      isLoggedIn: false,
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
       // this is state for popUp
@@ -24,6 +25,7 @@ class App extends Component {
     this.searchButtonHandler = this.searchButtonHandler.bind(this);
     this.categoryButtonHandler = this.categoryButtonHandler.bind(this);
     this.logInSubmitHandler = this.logInSubmitHandler.bind(this);
+    this.logoutHandler = this.logoutHandler.bind(this);
 
   }
 
@@ -110,14 +112,24 @@ class App extends Component {
         console.log('data from post request', data)
         this.setState((prevState) => {
           const newState = { ...prevState };
-          // newState.fetchTerm = data.term;
           newState.user = data.username
+          newState.isLoggedIn = true;
+          newState.preferredLocations = data.prefLocations;
           return newState;
         });
       })
       .catch((err) => console.log(err));
   }
   
+  logoutHandler() {
+    this.setState((prevState) => {
+      const newState = { ...prevState }
+      newState.user = null;
+      newState.preferredLocations = null;
+      newState.isLoggedIn = false;
+      return newState;
+    });
+  }
 
   componentDidMount() {
     // grab the user's location using browser's location and updates state -> client needs to give permission to access location
@@ -147,7 +159,7 @@ class App extends Component {
               width='150px'
             ></img>
           </Link>
-          <NavBar state={this.state} logInSubmitHandler={this.logInSubmitHandler} />
+          <NavBar userName={this.state.user} userStatus={this.state.isLoggedIn} logInSubmitHandler={this.logInSubmitHandler} logoutHandler={this.logoutHandler} />
         </div>
 
         <Switch>
