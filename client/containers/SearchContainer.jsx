@@ -23,6 +23,7 @@ const SearchContainer = ({ searchButtonHandler }) => {
           searchButtonHandler(userKeywordInput);
           
         }}
+        
       ></button>
     </div>
   );
