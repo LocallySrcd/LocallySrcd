@@ -14,7 +14,6 @@ class App extends Component {
       closedLocations: null, // closed locations: object with keys as the placeIDs and values of true; -> will be created when client receives results back from fetch request
       preferredLocations: null, // preferredLocations: object with keys as the placeIDs and values of true; -> will be created when client receive user info after user logins
       fetchTerm: '',
-      fetchCategory: '',
       //longitude: number -> will be created after component mounts
       //latitude: number -> will be created after component mounts
       // this is state for popUp
@@ -41,7 +40,7 @@ class App extends Component {
 
   categoryButtonHandler(event) {
     event.preventDefault();
-    const category = event.target.value;
+    const term = event.target.value;
     fetch('/api', {
       method: 'POST',
       headers: {
@@ -50,8 +49,7 @@ class App extends Component {
       body: JSON.stringify({
         latitude: this.state.latitude,
         longitude: this.state.longitude,
-        category: category,
-        term: this.state.fetchCategory,
+        term: term,
       }),
     })
       .then((data) => data.json())
@@ -61,7 +59,6 @@ class App extends Component {
           newState.results = data.results;
           newState.closedLocations = data.closedLocations;
           newState.fetchTerm = data.term;
-          newState.fetchCategory = data.category;
           return newState;
         });
       })
@@ -78,7 +75,6 @@ class App extends Component {
         latitude: this.state.latitude,
         longitude: this.state.longitude,
         term: term,
-        category: this.state.fetchCategory,
       }),
     })
       .then((data) => data.json())
@@ -88,7 +84,6 @@ class App extends Component {
           newState.results = data.results;
           newState.closedLocations = data.closedLocations;
           newState.fetchTerm = data.term;
-          newState.fetchCategory = data.category;
           return newState;
         });
       })

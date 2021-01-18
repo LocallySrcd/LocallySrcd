@@ -7,11 +7,11 @@ const client = yelp.client(
 const mainController = {};
 // sup Anson and Daniel. Check this out 😮‍💨 lol. fart emoji haha 💩 lol
 mainController.getResults = (req, res, next) => {
-  const { term, category, longitude, latitude } = req.body;
+  const { term, longitude, latitude } = req.body;
+  console.log(req.body);
   client
     .search({
       term: term,
-      category: category,
       latitude: latitude,
       longitude: longitude,
     })
@@ -32,7 +32,7 @@ mainController.getResults = (req, res, next) => {
       );
       res.locals.results = reducedResults;
       // send back term, send back category
-      res.locals.category = category;
+      //res.locals.category = category;
       res.locals.term = term;
       return next();
     })

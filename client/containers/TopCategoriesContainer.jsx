@@ -5,14 +5,14 @@ class TopCategoriesContainer extends Component {
     super();
     this.state = {
       categories: [
-        ['Lifestyle', 'active'],
-        ['Beauty', 'beautysvc'],
-        ['Treats', 'food'],
-        ['Sporty Goods', 'sportgoods'],
+        ['Lifestyle', 'lifestyle'],
+        ['Beauty', 'beauty'],
+        ['Treats', 'bakery'],
+        ['Sporty Goods', 'sporting goods'],
         ['Health', 'health'],
         ['Furry Friends', 'pets'],
         ['Dining', 'restaurants'],
-        ['Home Life', 'homeandgarden'],
+        ['Home Life', 'plants'],
         ['Clothing', 'fashion'],
       ],
     };
