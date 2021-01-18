@@ -92,6 +92,8 @@ class App extends Component {
         });
       })
       .catch((err) => console.log(err));
+      const search = document.getElementById('searchInput');
+      search.value = '';
   }
 
   logInSubmitHandler(username, password) {
