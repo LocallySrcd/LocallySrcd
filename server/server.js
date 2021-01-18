@@ -1,7 +1,8 @@
 const path = require('path');
+// importing express here 👇
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3000; // this is your port 👈
 
 // requiring mongoose
 const mongoose = require('mongoose');
@@ -9,9 +10,9 @@ const mongoose = require('mongoose');
 // requiring routers here
 const apiRouter = require('./routes/api.js');
 const signupRouter = require('./routes/signup.js');
-const favsRouter = require('./routes/favs.js');
 const loginRouter = require('./routes/login.js');
 
+// please don't attack my database 😤🥳🤪
 const MongoURI =
   'mongodb+srv://shahDBA:shahDBA123@clusterfudge.lrsuc.mongodb.net/locally?retryWrites=true&w=majority';
 
@@ -33,36 +34,17 @@ app.use((req, res, next) => {
   return next();
 });
 
-// put route handlers //
+// route handlers here 🤹
 app.use('/api', apiRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-// app.use('/api/favs', favsRouter);
 
 /*** MAIN PAGE ***/
-
-// app.post('/login', userController.getUser, (req, res) => {
-//   res.status(200).json(res.locals);
-// });
 
 // directs the request to the assets folder for images
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 // for the devServer
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-
-// main app handler
-
-// app.get('/favorites', (req, res) => {
-//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-// });
-
-// app.get('/results', (req, res) => {
-//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-// });
-
-// app.get('/signup', (req, res) => {
-//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-// });
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
@@ -87,7 +69,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
+  console.log(`Server listening on port: 🐼 ${PORT} 🐼`);
 });
 
 module.exports = app;
