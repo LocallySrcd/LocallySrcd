@@ -76,6 +76,23 @@
     border: none;
   }
 
+  #reportClosed:hover {
+    cursor: pointer;
+  }
+
+  #isclosed {
+    grid-area: reportClosed;
+    text-align: center;
+    color: red;
+    background-color: white;
+    border: none;
+  }
+
+  #isclosed:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+
   #favIcon {
     grid-area: favIcon;
     display: flex;
