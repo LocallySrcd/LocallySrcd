@@ -40,7 +40,8 @@ const UserController = {
   // if user logs in
   getUser(req, res, next) {
     console.log('in getUser');
-    const { username, password, prefLocations } = req.body;
+    // we wont' be sending preflocations when someone logs in. you need to send that back
+    const { username, password } = req.body;
 
     User.findOne(
       {
