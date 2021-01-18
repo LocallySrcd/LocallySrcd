@@ -134,6 +134,7 @@ class App extends Component {
       newState.user = null;
       newState.preferredLocations = null;
       newState.isLoggedIn = false;
+      newState.results = null;
       return newState;
     });
   }
