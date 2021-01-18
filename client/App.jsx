@@ -53,7 +53,7 @@ class App extends Component {
         latitude: this.state.latitude,
         longitude: this.state.longitude,
         category: category,
-        term: this.state.fetchCategory,
+        term: this.state.fetchTerm,
       }),
     })
       .then((data) => data.json())
@@ -81,7 +81,7 @@ class App extends Component {
         latitude: this.state.latitude,
         longitude: this.state.longitude,
         term: term,
-        category: this.state.fetchTerm,
+        category: this.state.fetchCategory,
       }),
     })
       .then((data) => data.json())
