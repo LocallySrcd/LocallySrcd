@@ -23,9 +23,15 @@
   outline: none;
 }
 
+
 #searchInput:hover{
   text-decoration: none;
   box-shadow: 1px 1px 5px #bbbbbb;
+  
+}
+
+#searchButton:hover{
+  cursor: pointer;
 }
 
 #searchButton {
